@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { toast } from "react-toastify";
 import API_URL from "../utils/api";
 
 export default function Listings() {

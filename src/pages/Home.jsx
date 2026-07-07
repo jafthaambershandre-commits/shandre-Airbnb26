@@ -15,6 +15,7 @@ import PriceFilter from "../components/PriceFilter";
 import SortFilter from "../components/SortFilter";
 import ReviewCard from "../components/ReviewCard";
 import SkeletonCard from "../components/SkeletonCard";
+import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 import API_URL from "../utils/api";
 

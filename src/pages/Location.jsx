@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 import API_URL from "../utils/api";
 
 export default function Location() {

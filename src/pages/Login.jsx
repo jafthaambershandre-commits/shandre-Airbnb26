@@ -5,7 +5,6 @@ import API_URL from "../utils/api";
 
 export default function Login() {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,13 +12,10 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${API_URL}/api/users/login`,
-        {
-          email,
-          password,
-        },
-      );
+      const response = await axios.post(`${API_URL}/api/users/login`, {
+        email,
+        password,
+      });
 
       localStorage.setItem("token", response.data.token);
 
