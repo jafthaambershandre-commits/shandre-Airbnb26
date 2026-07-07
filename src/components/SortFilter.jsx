@@ -2,7 +2,7 @@ export default function SortFilter({ sortBy, setSortBy }) {
   return (
     <div className="sort-filter">
       <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-        <option value="Default">Sort By</option>
+        <option value="Default">Sort by</option>
 
         <option value="PriceLow">Price: Low to High</option>
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import airbnbLogo from "../assets/airbnb-logo.svg";
+import { FiSearch } from "react-icons/fi";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
@@ -37,60 +38,62 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <div className="navbar-top"></div>
-      <Link to="/" className="navbar-logo">
-        <img src={airbnbLogo} alt="Airbnb Logo" />
-        <span>airbnb</span>
-      </Link>
+      <div className="navbar-top">
+        <Link to="/" className="navbar-logo">
+          <img src={airbnbLogo} alt="Airbnb Logo" />
+        </Link>
 
-      <div className="navbar-right">
-        <button className="host-btn" onClick={() => navigate("/admin")}>
-          Become a Host
-        </button>
-
-        <button className="globe-btn">🌐</button>
-
-        <div className="profile-menu">
-          <button
-            className="profile-btn"
-            onClick={() => setShowMenu(!showMenu)}
-          >
-            ☰ 👤
+        <div className="navbar-right">
+          <button className="host-btn" onClick={() => navigate("/admin")}>
+            Become a Host
           </button>
 
-          {showMenu && (
-            <div className="dropdown-menu">
-              {user ? (
-                <>
-                  <p>Hello, {user.username}</p>
+          <button className="globe-btn">🌐</button>
 
-                  <button onClick={() => navigate("/profile")}>Profile</button>
+          <div className="profile-menu">
+            <button
+              className="profile-btn"
+              onClick={() => setShowMenu(!showMenu)}
+            >
+              ☰ 👤
+            </button>
 
-                  <button onClick={() => navigate("/wishlist")}>
-                    Wishlist ({wishlistCount})
-                  </button>
+            {showMenu && (
+              <div className="dropdown-menu">
+                {user ? (
+                  <>
+                    <p>Hello, {user.username}</p>
 
-                  <button onClick={() => navigate("/reservations")}>
-                    Reservations ({reservationCount})
-                  </button>
+                    <button onClick={() => navigate("/profile")}>
+                      Profile
+                    </button>
 
-                  <button onClick={() => navigate("/admin")}>
-                    Admin Dashboard
-                  </button>
+                    <button onClick={() => navigate("/wishlist")}>
+                      Wishlist ({wishlistCount})
+                    </button>
 
-                  <button onClick={handleLogout}>Logout</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => navigate("/login")}>Login</button>
+                    <button onClick={() => navigate("/reservations")}>
+                      Reservations ({reservationCount})
+                    </button>
 
-                  <button onClick={() => navigate("/register")}>
-                    Register
-                  </button>
-                </>
-              )}
-            </div>
-          )}
+                    <button onClick={() => navigate("/admin")}>
+                      Admin Dashboard
+                    </button>
+
+                    <button onClick={handleLogout}>Logout</button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={() => navigate("/login")}>Login</button>
+
+                    <button onClick={() => navigate("/register")}>
+                      Register
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -120,7 +123,9 @@ export default function Navbar() {
           <span>Add guests</span>
         </div>
 
-        <button className="search-btn">🔍</button>
+        <button className="search-btn">
+          <FiSearch />
+        </button>
       </div>
     </header>
   );

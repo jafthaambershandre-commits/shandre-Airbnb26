@@ -2,52 +2,46 @@ export default function FeaturedDestinations() {
   const places = [
     {
       city: "Cape Town",
-      image:
-        "https://images.unsplash.com/photo-1580060839134-75a5edca2e99",
+      subtitle: "Table Mountain & Beaches",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
     },
     {
-      city: "Durban",
-      image:
-        "https://images.unsplash.com/photo-1576485375217-d6a95e34d043",
+      city: "Stellenbosch",
+      subtitle: "Wine Country",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
     },
     {
-      city: "Johannesburg",
-      image:
-        "https://images.unsplash.com/photo-1597212618440-806262de4f6b",
+      city: "Garden Route",
+      subtitle: "Forests & Coastline",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e",
     },
     {
-      city: "Drakensberg",
-      image:
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+      city: "Kruger National Park",
+      subtitle: "Big Five Safari",
+      image: "https://images.unsplash.com/photo-1549366021-9f761d450615",
     },
   ];
 
   return (
     <section className="featured-destinations">
-
       <h2>Explore South Africa</h2>
 
+      <p>Discover incredible destinations and unforgettable experiences.</p>
+
       <div className="featured-grid">
-
         {places.map((place) => (
+          <div key={place.city} className="featured-card">
+            <img src={place.image} alt={place.city} />
 
-          <div
-            key={place.city}
-            className="featured-card"
-          >
-            <img
-              src={place.image}
-              alt={place.city}
-            />
+            <div className="featured-info">
+              <h3>{place.city}</h3>
+              <p>{place.subtitle}</p>
 
-            <h3>{place.city}</h3>
-
+              <span className="explore-link">Explore →</span>
+            </div>
           </div>
-
         ))}
-
       </div>
-
     </section>
   );
 }

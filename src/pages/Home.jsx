@@ -158,8 +158,6 @@ export default function Home() {
     <div>
       <Navbar />
 
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
       <Categories
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}

@@ -14,7 +14,7 @@ export default function TypeFilter({
         }
       >
         <option value="All">
-          All Types
+          Property Type
         </option>
 
         <option value="Apartment">

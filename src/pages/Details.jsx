@@ -36,9 +36,7 @@ export default function Details() {
 
   async function fetchReviews() {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/reviews/${id}`,
-      );
+      const response = await axios.get(`${API_URL}/api/reviews/${id}`);
 
       setReviews(response.data);
     } catch (error) {
@@ -101,9 +99,7 @@ export default function Details() {
 
   async function fetchListing() {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/accommodations/${id}`,
-      );
+      const response = await axios.get(`${API_URL}/api/accommodations/${id}`);
 
       setListing(response.data);
     } catch (error) {
@@ -395,7 +391,15 @@ export default function Details() {
               <div className="map-section">
                 <h2>Where you'll be</h2>
 
-                <div className="fake-map">📍 {listing.location}</div>
+                <div className="map-container">
+                  <iframe
+                    title="location"
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      listing.location,
+                    )}&z=13&output=embed`}
+                    loading="lazy"
+                  />
+                </div>
               </div>
 
               <p>
@@ -410,7 +414,6 @@ export default function Details() {
                   R{listing.price.toLocaleString()}
                   <span>/ night</span>
                 </h2>
-
                 <div className="booking-inputs">
                   <div>
                     <label>Check In</label>
@@ -443,7 +446,6 @@ export default function Details() {
                     />
                   </div>
                 </div>
-
                 <div className="price-breakdown">
                   <div className="price-row">
                     <span>
@@ -488,8 +490,9 @@ export default function Details() {
                     <strong>R{total.toLocaleString()}</strong>
                   </div>
                 </div>
-
-                <button onClick={handleReservation}>Reserve your stay</button>
+                <button className="reserve-btn" onClick={handleReservation}>
+                  Reserve your stay
+                </button>{" "}
               </div>
             </div>
           </div>

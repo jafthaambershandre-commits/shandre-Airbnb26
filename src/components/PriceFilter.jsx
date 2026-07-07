@@ -14,7 +14,7 @@ export default function PriceFilter({
         }
       >
         <option value="All">
-          All Prices
+          Price
         </option>
 
         <option value="Under1000">
