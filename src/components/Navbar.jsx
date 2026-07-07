@@ -47,7 +47,7 @@ export default function Navbar() {
 
     <Link to="/">Homes</Link>
 
-    <Link to="/shop-airbnb">Experiences</Link>
+    <Link to="/listings">Experiences</Link>
 
   </div>
 
