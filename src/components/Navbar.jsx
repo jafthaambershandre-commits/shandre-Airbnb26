@@ -1,32 +1,31 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import airbnbLogo from "../assets/airbnb-logo.svg";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
-
   const user = JSON.parse(localStorage.getItem("airbnbUser"));
-
+  const navigate = useNavigate();
   const [wishlistCount, setWishlistCount] = useState(0);
-
   const [reservationCount, setReservationCount] = useState(0);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    function updateWishlistCount() {
+    function updateCounts() {
       const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
+      const reservations =
+        JSON.parse(localStorage.getItem("reservations")) || [];
+
       setWishlistCount(favorites.length);
+      setReservationCount(reservations.length);
     }
 
-    updateWishlistCount();
+    updateCounts();
 
-    window.addEventListener("storage", updateWishlistCount);
+    window.addEventListener("storage", updateCounts);
 
-    return () => window.removeEventListener("storage", updateWishlistCount);
-
-    <Link to="/reservations">📅 Reservations ({reservationCount})</Link>;
+    return () => window.removeEventListener("storage", updateCounts);
   }, []);
 
   function handleLogout() {
@@ -38,87 +37,91 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
+      <div className="navbar-top"></div>
+      <Link to="/" className="navbar-logo">
+        <img src={airbnbLogo} alt="Airbnb Logo" />
+        <span>airbnb</span>
+      </Link>
 
-  <Link to="/" className="navbar-logo">
-    <h2>airbnb</h2>
-  </Link>
+      <div className="navbar-right">
+        <button className="host-btn" onClick={() => navigate("/admin")}>
+          Become a Host
+        </button>
 
-  <div className="navbar-center">
+        <button className="globe-btn">🌐</button>
 
-    <Link to="/">Homes</Link>
+        <div className="profile-menu">
+          <button
+            className="profile-btn"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            ☰ 👤
+          </button>
 
-    <Link to="/listings">Experiences</Link>
+          {showMenu && (
+            <div className="dropdown-menu">
+              {user ? (
+                <>
+                  <p>Hello, {user.username}</p>
 
-  </div>
+                  <button onClick={() => navigate("/profile")}>Profile</button>
 
-  <div className="navbar-right">
+                  <button onClick={() => navigate("/wishlist")}>
+                    Wishlist ({wishlistCount})
+                  </button>
 
-    <button
-      className="host-btn"
-      onClick={() => navigate("/admin")}
-    >
-      Become a Host
-    </button>
+                  <button onClick={() => navigate("/reservations")}>
+                    Reservations ({reservationCount})
+                  </button>
 
-    <button className="globe-btn">
-      🌐
-    </button>
+                  <button onClick={() => navigate("/admin")}>
+                    Admin Dashboard
+                  </button>
 
-    <div className="profile-menu">
+                  <button onClick={handleLogout}>Logout</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => navigate("/login")}>Login</button>
 
-      <button
-        className="profile-btn"
-        onClick={() => setShowMenu(!showMenu)}
-      >
-        ☰ 👤
-      </button>
-
-      {showMenu && (
-        <div className="dropdown-menu">
-
-          {user ? (
-            <>
-              <p>Hello, {user.username}</p>
-
-              <button onClick={() => navigate("/profile")}>
-                Profile
-              </button>
-
-              <button onClick={() => navigate("/wishlist")}>
-                Wishlist ({wishlistCount})
-              </button>
-
-              <button onClick={() => navigate("/reservations")}>
-                Reservations
-              </button>
-
-              <button onClick={() => navigate("/admin")}>
-                Admin Dashboard
-              </button>
-
-              <button onClick={handleLogout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <button onClick={() => navigate("/login")}>
-                Login
-              </button>
-
-              <button onClick={() => navigate("/register")}>
-                Register
-              </button>
-            </>
+                  <button onClick={() => navigate("/register")}>
+                    Register
+                  </button>
+                </>
+              )}
+            </div>
           )}
-
         </div>
-      )}
+      </div>
 
-    </div>
+      <div className="navbar-tabs">
+        <Link to="/">Homes</Link>
 
-  </div>
+        <Link to="/listings">Explore</Link>
+      </div>
 
-</header>
+      <div className="navbar-search">
+        <div className="search-item">
+          <strong>Where</strong>
+          <span>Search destinations</span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="search-item">
+          <strong>When</strong>
+          <span>Add dates</span>
+        </div>
+
+        <div className="divider"></div>
+
+        <div className="search-item">
+          <strong>Guests</strong>
+          <span>Add guests</span>
+        </div>
+
+        <button className="search-btn">🔍</button>
+      </div>
+    </header>
   );
 }
