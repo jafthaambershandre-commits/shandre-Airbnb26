@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import ListingCard from "../components/ListingCard";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Location() {

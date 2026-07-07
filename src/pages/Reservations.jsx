@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import ReservationCard from "../components/ReservationCard";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Reservations() {

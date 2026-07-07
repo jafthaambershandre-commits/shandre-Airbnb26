@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Profile() {

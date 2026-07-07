@@ -17,6 +17,7 @@ import ReviewCard from "../components/ReviewCard";
 import SkeletonCard from "../components/SkeletonCard";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Home() {

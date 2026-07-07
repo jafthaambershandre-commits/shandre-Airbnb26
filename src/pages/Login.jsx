@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Login() {

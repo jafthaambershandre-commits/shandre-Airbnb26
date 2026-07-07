@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { toast } from "react-toastify";
+import axios from "axios";
 import API_URL from "../utils/api";
 
 export default function Admin() {
