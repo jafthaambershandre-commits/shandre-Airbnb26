@@ -69,7 +69,7 @@ export async function loginUser(req, res) {
     res.json({
       token,
       user: {
-        id: user._id,
+        id: user.id,
         username: user.username,
         email: user.email,
         role: user.role,
