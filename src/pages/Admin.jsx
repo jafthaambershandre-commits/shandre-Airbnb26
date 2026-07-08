@@ -151,7 +151,8 @@ export default function Admin() {
     try {
       setLoading(true);
 
-      const res = axios.get(`${API_URL}/api/accommodations`);
+      const res = await axios.get(`${API_URL}/api/accommodations`);
+
       setListings(res.data);
     } catch (error) {
       toast.error("Failed to load listings");
@@ -162,17 +163,13 @@ export default function Admin() {
 
   async function fetchStats() {
     try {
-      const listingsResponse = await axios.get(
-        `${API_URL}/api/accommodations`,
-      );
+      const listingsResponse = await axios.get(`${API_URL}/api/accommodations`);
 
       const reservationsResponse = await axios.get(
         `${API_URL}/api/reservations`,
       );
 
-      const reviewsResponse = await axios.get(
-        `${API_URL}/api/reviews`,
-      );
+      const reviewsResponse = await axios.get(`${API_URL}/api/reviews`);
 
       setStats({
         listings: listingsResponse.data.length,
@@ -190,9 +187,7 @@ export default function Admin() {
 
   async function fetchReservations() {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/reservations`,
-      );
+      const response = await axios.get(`${API_URL}/api/reservations`);
 
       setReservations(response.data);
     } catch (error) {
@@ -216,10 +211,9 @@ export default function Admin() {
 
   async function updateReservationStatus(id, status) {
     try {
-      const response = await axios.put(
-        `${API_URL}/api/reservations/${id}`,
-        { status },
-      );
+      const response = await axios.put(`${API_URL}/api/reservations/${id}`, {
+        status,
+      });
 
       const updatedReservations = reservations.map((reservation) =>
         reservation._id === id ? response.data : reservation,

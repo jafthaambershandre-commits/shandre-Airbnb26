@@ -284,17 +284,45 @@ export default function Details() {
             <div className="details-left">
               <h2>About this stay</h2>
 
-              <h3>🏡 Entire home</h3>
-              <p>You'll have the whole place to yourself.</p>
+              <div className="feature-item">
+                <span>🏡</span>
 
-              <h3>🔑 Self check-in</h3>
-              <p>Check yourself in with a keypad.</p>
+                <div>
+                  <h3>Entire home</h3>
 
-              <h3>🛜 Fast Wi-Fi</h3>
-              <p>Perfect for remote work..</p>
+                  <p>You'll have the whole place to yourself.</p>
+                </div>
+              </div>
 
-              <h3>📍 Great location</h3>
-              <p>95% of guests gave the location 5 stars.</p>
+              <div className="feature-item">
+                <span>🔑</span>
+
+                <div>
+                  <h3>Self check-in</h3>
+
+                  <p>Check yourself in with a keypad.</p>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <span>🛜</span>
+
+                <div>
+                  <h3>Fast Wi-Fi</h3>
+
+                  <p>Perfect for remote work.</p>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <span>📍</span>
+
+                <div>
+                  <h3>Great location</h3>
+
+                  <p>95% of guests gave the location 5 stars.</p>
+                </div>
+              </div>
 
               <div className="host-section">
                 <div className="host-card">
@@ -351,7 +379,23 @@ export default function Details() {
                   )}
                 </div>
               </div>
+              <div className="map-section">
+                <h2>Where you'll be</h2>
+                <div className="map-container">
+                  <iframe
+                    title="location"
+                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                      listing.location,
+                    )}&z=13&output=embed`}
+                    loading="lazy"
+                  />
+                </div>
 
+                <p>
+                  {listing.description ||
+                    `Beautiful accommodation located in ${listing.location}.`}
+                </p>
+              </div>
               <div className="things-section">
                 <h2>Things to know</h2>
 
@@ -387,65 +431,48 @@ export default function Details() {
                   </div>
                 </div>
               </div>
-
-              <div className="map-section">
-                <h2>Where you'll be</h2>
-
-                <div className="map-container">
-                  <iframe
-                    title="location"
-                    src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                      listing.location,
-                    )}&z=13&output=embed`}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              <p>
-                {listing.description ||
-                  `Beautiful accommodation located in ${listing.location}.`}
-              </p>
             </div>
-
             <div className="details-right">
               <div className="reservation-box">
                 <h2>
                   R{listing.price.toLocaleString()}
                   <span>/ night</span>
                 </h2>
-                <div className="booking-inputs">
-                  <div>
-                    <label>Check In</label>
+                <div className="booking-box">
+                  <div className="booking-dates">
+                    <div className="booking-field">
+                      <label>CHECK-IN</label>
 
-                    <input
-                      type="date"
-                      value={checkIn}
-                      onChange={(e) => setCheckIn(e.target.value)}
-                    />
-                  </div>
+                      <input
+                        type="date"
+                        value={checkIn}
+                        onChange={(e) => setCheckIn(e.target.value)}
+                      />
+                    </div>
 
-                  <div>
-                    <label>Check Out</label>
+                    <div className="booking-field">
+                      <label>CHECK-OUT</label>
 
-                    <input
-                      type="date"
-                      value={checkOut}
-                      onChange={(e) => setCheckOut(e.target.value)}
-                    />
-                  </div>
+                      <input
+                        type="date"
+                        value={checkOut}
+                        onChange={(e) => setCheckOut(e.target.value)}
+                      />
+                    </div>
 
-                  <div>
-                    <label>Guests</label>
+                    <div className="booking-guests">
+                      <label>GUESTS</label>
 
-                    <input
-                      type="number"
-                      min="1"
-                      value={guests}
-                      onChange={(e) => setGuests(Number(e.target.value))}
-                    />
+                      <input
+                        type="number"
+                        min="1"
+                        value={guests}
+                        onChange={(e) => setGuests(Number(e.target.value))}
+                      />
+                    </div>
                   </div>
                 </div>
+
                 <div className="price-breakdown">
                   <div className="price-row">
                     <span>
@@ -455,108 +482,97 @@ export default function Details() {
 
                     <span>R{subtotal.toLocaleString()}</span>
                   </div>
-
                   <div className="price-row">
                     <span>Cleaning fee</span>
-
                     <span>R{cleaningFee.toLocaleString()}</span>
                   </div>
-
                   <div className="price-row">
                     <span>Service fee</span>
-
                     <span>R{serviceFee.toLocaleString()}</span>
                   </div>
-
                   <div className="price-row">
                     <span>Taxes</span>
-
                     <span>R{taxes.toLocaleString()}</span>
                   </div>
-
                   {discount > 0 && (
                     <div className="price-row discount">
                       <span>Weekly Discount</span>
-
                       <span>-R{discount.toLocaleString()}</span>
                     </div>
                   )}
-
                   <hr />
-
                   <div className="price-total">
                     <strong>Total</strong>
-
                     <strong>R{total.toLocaleString()}</strong>
                   </div>
+                  <button className="reserve-btn" onClick={handleReservation}>
+                    Reserve your stay
+                  </button>{" "}
                 </div>
-                <button className="reserve-btn" onClick={handleReservation}>
-                  Reserve your stay
-                </button>{" "}
               </div>
             </div>
           </div>
-
-          <div className="stay-summary">
-            <h2>
-              {nights > 0
-                ? `${nights} night${nights > 1 ? "s" : ""} in ${listing.location}`
-                : `Choose your dates`}
-            </h2>
-          </div>
-
-          <div className="reviews-section">
-            <p>
-              ⭐ {averageRating} based on {reviews.length} reviews
-            </p>
-
-            <h2>Reviews ({reviews.length})</h2>
-
-            {user ? (
-              <div className="review-form">
-                <select
-                  value={rating}
-                  onChange={(e) => setRating(Number(e.target.value))}
-                >
-                  <option value={5}>5 Stars</option>
-
-                  <option value={4}>4 Stars</option>
-
-                  <option value={3}>3 Stars</option>
-
-                  <option value={2}>2 Stars</option>
-
-                  <option value={1}>1 Star</option>
-                </select>
-
-                <textarea
-                  placeholder="Write a review..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-
-                <button className="review-btn" onClick={submitReview}>
-                  Submit Review
-                </button>
-              </div>
-            ) : (
-              <p>Please login to leave a review.</p>
-            )}
-
-            {reviews.map((review) => (
-              <ReviewCard key={review._id} review={review} />
-            ))}
-          </div>
         </div>
 
-        {selectedImage && (
-          <div className="image-modal" onClick={() => setSelectedImage(null)}>
-            <img src={selectedImage} alt="" />
-          </div>
-        )}
+        <div className="stay-summary">
+          <h2>
+            {nights > 0
+              ? `${nights} night${nights > 1 ? "s" : ""} in ${listing.location}`
+              : `Choose your dates`}
+          </h2>
+        </div>
 
-        <Footer />
+        <div className="reviews-section">
+          <p>
+            ⭐ {averageRating} based on {reviews.length} reviews
+          </p>
+
+          <h2>Reviews ({reviews.length})</h2>
+
+          {user ? (
+            <div className="review-form">
+              <select
+                value={rating}
+                onChange={(e) => setRating(Number(e.target.value))}
+              >
+                <option value={5}>5 Stars</option>
+
+                <option value={4}>4 Stars</option>
+
+                <option value={3}>3 Stars</option>
+
+                <option value={2}>2 Stars</option>
+
+                <option value={1}>1 Star</option>
+              </select>
+
+              <textarea
+                placeholder="Write a review..."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+
+              <button className="review-btn" onClick={submitReview}>
+                Submit Review
+              </button>
+            </div>
+          ) : (
+            <p>Please login to leave a review.</p>
+          )}
+
+          {reviews.map((review) => (
+            <ReviewCard key={review._id} review={review} />
+          ))}
+        </div>
       </div>
+
+      {selectedImage && (
+        <div className="image-modal" onClick={() => setSelectedImage(null)}>
+          <img src={selectedImage} alt="" />
+        </div>
+      )}
+
+      <Footer />
     </div>
   );
 }
