@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="hero-overlay">
 
         <h1>
-          Find your next stay
+          Find your perfect escape
         </h1>
 
         <p>

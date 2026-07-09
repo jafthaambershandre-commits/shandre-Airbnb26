@@ -205,7 +205,7 @@ export default function Home() {
             <ListingCard
               key={listing._id}
               id={listing._id}
-              image={listing.image}
+              image={listing.images}
               title={listing.title}
               location={listing.location}
               price={listing.price}
@@ -226,7 +226,7 @@ export default function Home() {
               <ListingCard
                 key={listing._id}
                 id={listing._id}
-                image={listing.image}
+                image={listing.images}
                 title={listing.title}
                 location={listing.location}
                 price={listing.price}
@@ -250,7 +250,7 @@ export default function Home() {
               <ListingCard
                 key={listing._id}
                 id={listing._id}
-                image={listing.image}
+                image={listing.images}
                 title={listing.title}
                 location={listing.location}
                 price={listing.price}

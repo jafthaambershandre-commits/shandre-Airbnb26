@@ -44,9 +44,15 @@ export default function Navbar() {
         </Link>
 
         <div className="navbar-right">
-          <button className="host-btn" onClick={() => navigate("/admin")}>
-            Become a Host
-          </button>
+          {user?.role === "host" ? (
+            <button className="host-btn" onClick={() => navigate("/admin")}>
+              Dashboard
+            </button>
+          ) : (
+            <button className="host-btn" onClick={() => navigate("/admin")}>
+              Become a Host
+            </button>
+          )}
 
           <button className="globe-btn">🌐</button>
 
@@ -64,19 +70,39 @@ export default function Navbar() {
                   <>
                     <p>Hello, {user.username}</p>
 
-                    <button onClick={() => navigate("/profile")}>
+                    <button
+                      onClick={() => {
+                        navigate("/profile");
+                        setShowMenu(false);
+                      }}
+                    >
                       Profile
                     </button>
 
-                    <button onClick={() => navigate("/wishlist")}>
+                    <button
+                      onClick={() => {
+                        navigate("/wishlist");
+                        setShowMenu(false);
+                      }}
+                    >
                       Wishlist ({wishlistCount})
                     </button>
 
-                    <button onClick={() => navigate("/reservations")}>
+                    <button
+                      onClick={() => {
+                        navigate("/reservations");
+                        setShowMenu(false);
+                      }}
+                    >
                       Reservations ({reservationCount})
                     </button>
 
-                    <button onClick={() => navigate("/admin")}>
+                    <button
+                      onClick={() => {
+                        navigate("/admin");
+                        setShowMenu(false);
+                      }}
+                    >
                       Admin Dashboard
                     </button>
 
@@ -124,7 +150,7 @@ export default function Navbar() {
         </div>
 
         <button className="search-btn">
-          <FiSearch />
+          <FiSearch size={18} />
         </button>
       </div>
     </header>

@@ -63,7 +63,15 @@ export default function ListingCard({
         {Number(rating) >= 4.8 && (
           <div className="guest-favorite-badge">🏆 Guest Favorite</div>
         )}
-        <img src={image} alt={title} />
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          onError={(e) => {
+            e.target.src =
+              "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=900";
+          }}
+        />
 
         <div className="listing-info">
           <div className="listing-top">
@@ -84,7 +92,7 @@ export default function ListingCard({
 
           <p className="listing-distance">{type}</p>
 
-          <p className="listing-dates">Available this week</p>
+          <p className="listing-dates">Instant booking available</p>
 
           <div className="listing-price">
             <strong>R{price.toLocaleString()}</strong> night

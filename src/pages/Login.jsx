@@ -31,28 +31,35 @@ export default function Login() {
   }
 
   return (
-    <div className="login-page">
-      <form className="login-form" onSubmit={handleLogin}>
-        <h1>Login</h1>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>🏡 Airbnb</h1>
+        <h1>Welcome Back</h1>
+        <p>Sign in to continue your Airbnb journey</p>
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <form className="auth-form" onSubmit={handleLogin}>
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <button type="submit">Login</button>
+          <button type="submit">Login</button>
+        </form>
 
-        <Link to="/register">Register</Link>
-      </form>
+        <p className="auth-link">
+          Don't have an account?
+          <Link to="/register"> Register</Link>
+        </p>
+      </div>
     </div>
   );
 }

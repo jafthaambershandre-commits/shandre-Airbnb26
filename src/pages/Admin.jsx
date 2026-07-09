@@ -243,12 +243,21 @@ export default function Admin() {
       return;
 
     try {
-      await axios.delete(`${API_URL}/api/accommodations/${id}`);
+      const token = localStorage.getItem("token");
 
-      setListings(listings.filter((l) => l._id !== id));
+      await axios.delete(`${API_URL}/api/accommodations/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      toast.success("Listing deleted");
+      setListings((prev) => prev.filter((listing) => listing._id !== id));
+
+      await fetchStats();
+
+      toast.success("Listing deleted successfully!");
     } catch (error) {
+      console.error(error);
       toast.error("Delete failed");
     }
   }
