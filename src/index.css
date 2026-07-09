@@ -1067,7 +1067,6 @@ body {
 @media (max-width: 768px) {
   .review-card {
     padding: 20px;
-    min-height: auto;
   }
 
   .recent-reviews {
