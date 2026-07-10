@@ -523,9 +523,9 @@ export default function Details() {
         </div>
 
         <div className="reviews-section">
-          <p>
-            ⭐ {averageRating} based on {reviews.length} reviews
-          </p>
+          <p className="reviews-summary">
+  ⭐ <strong>{averageRating}</strong> · {reviews.length} guest review{reviews.length !== 1 ? "s" : ""}
+</p>
 
           <h2>Reviews ({reviews.length})</h2>
 

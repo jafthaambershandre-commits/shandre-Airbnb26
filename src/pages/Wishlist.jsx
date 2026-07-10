@@ -66,10 +66,6 @@ export default function Wishlist() {
         <div className="wishlist-page">
           <h1>❤️ My Wishlist</h1>
 
-          <p className="wishlist-subtitle">
-            Your saved properties all in one place.
-          </p>
-
           {success && <p className="success">{success}</p>}
 
           {favorites.length === 0 ? (

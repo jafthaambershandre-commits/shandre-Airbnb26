@@ -12,6 +12,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { toast } from "react-toastify";
+import SkeletonCard from "../components/SkeletonCard";
 import axios from "axios";
 import API_URL from "../utils/api";
 
@@ -463,7 +464,8 @@ export default function Admin() {
   }
 
   if (loading) {
-    return <div className="loading-screen">Loading dashboard...</div>;
+    return 
+    <div className="LoadingSpinner message">Loading dashboard...</div>;
   }
 
   return (
@@ -480,93 +482,95 @@ export default function Admin() {
             <button onClick={handleLogout}>Logout</button>
           </div>
 
-          <div className="stats-grid">
-            <div className="stat-card">
-              <h2>{stats.listings}</h2>
-              <p>Listings</p>
-            </div>
+          <div className="admin-stats-grid">
+            <div className="admin-board">
+              <div className="admin-stat-card">
+                <h2>{stats.listings}</h2>
+                <p>Listings</p>
+              </div>
 
-            <div className="stat-card">
-              <h2>{stats.reservations}</h2>
-              <p>Reservations</p>
-            </div>
+              <div className="admin-stat-card">
+                <h2>{stats.reservations}</h2>
+                <p>Reservations</p>
+              </div>
 
-            <div className="stat-card">
-              <h2>{stats.reviews}</h2>
-              <p>Reviews</p>
-            </div>
+              <div className="admin-stat-card">
+                <h2>{stats.reviews}</h2>
+                <p>Reviews</p>
+              </div>
 
-            <div className="stat-card">
-              <h2>R{totalRevenue.toLocaleString()}</h2>
-              <p>Revenue</p>
-            </div>
-
-            <div className="stat-card">
-              <h2>{averageRating}</h2>
-              <p>Average Rating</p>
-            </div>
-
-            <div className="analytics-grid">
-              <div className="stat-card">
+              <div className="admin-stat-card">
                 <h2>R{totalRevenue.toLocaleString()}</h2>
-                <p>Total Revenue</p>
+                <p>Revenue</p>
               </div>
 
-              <div className="stat-card">
-                <h2>{confirmedReservations.length}</h2>
-                <p>Confirmed</p>
+              <div className="admin-stat-card">
+                <h2>{averageRating}</h2>
+                <p>Average Rating</p>
               </div>
 
-              <div className="stat-card">
-                <h2>{pendingReservations.length}</h2>
-                <p>Pending</p>
-              </div>
+              <div className="analytics-grid">
+                <div className="stat-card">
+                  <h2>R{totalRevenue.toLocaleString()}</h2>
+                  <p>Total Revenue</p>
+                </div>
 
-              <div className="stat-card">
-                <h2>{cancelledReservations.length}</h2>
-                <p>Cancelled</p>
-              </div>
+                <div className="stat-card">
+                  <h2>{confirmedReservations.length}</h2>
+                  <p>Confirmed</p>
+                </div>
 
-              <div className="stat-card">
-                <h2>R{averageBookingValue.toLocaleString()}</h2>
-                <p>Avg Booking Value</p>
-              </div>
-            </div>
+                <div className="stat-card">
+                  <h2>{pendingReservations.length}</h2>
+                  <p>Pending</p>
+                </div>
 
-            <div className="charts-section">
-              <div className="chart-card">
-                <h2>Revenue Overview</h2>
+                <div className="stat-card">
+                  <h2>{cancelledReservations.length}</h2>
+                  <p>Cancelled</p>
+                </div>
 
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={revenueData}>
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
+                <div className="stat-card">
+                  <h2>R{averageBookingValue.toLocaleString()}</h2>
+                  <p>Avg Booking Value</p>
+                </div>
 
-                    <Bar dataKey="amount" fill="#ff385c" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
+                <div className="charts-section">
+                  <div className="chart-card">
+                    <h2>Revenue Overview</h2>
 
-              <div className="chart-card">
-                <h2>Reservation Status</h2>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <BarChart data={revenueData}>
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
 
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={reservationData}
-                      dataKey="value"
-                      nameKey="name"
-                      outerRadius={100}
-                      label
-                    >
-                      <Cell fill="#22c55e" />
-                      <Cell fill="#f59e0b" />
-                      <Cell fill="#ef4444" />
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
+                        <Bar dataKey="amount" fill="#ff385c" />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  <div className="chart-card">
+                    <h2>Reservation Status</h2>
+
+                    <ResponsiveContainer width="100%" height={300}>
+                      <PieChart>
+                        <Pie
+                          data={reservationData}
+                          dataKey="value"
+                          nameKey="name"
+                          outerRadius={100}
+                          label
+                        >
+                          <Cell fill="#22c55e" />
+                          <Cell fill="#f59e0b" />
+                          <Cell fill="#ef4444" />
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -714,26 +718,41 @@ export default function Admin() {
 
                   <h3>{listing.title}</h3>
 
-                  <p>{listing.location}</p>
-
-                  <p>{listing.type}</p>
-
-                  <p>{listing.bedrooms} Bedrooms</p>
-
-                  <p>{listing.bathrooms} Bathrooms</p>
-
-                  <p>{listing.guests} Guests</p>
-
-                  <p>{listing.description}</p>
-
                   <p>
-                    Amenities:
-                    {listing.amenities?.join(", ")}
+                    Location: <strong>{listing.location}</strong>
                   </p>
 
-                  <p>Discount:{listing.weeklyDiscount}%</p>
+                  <p>
+                    Type: <strong>{listing.type}</strong>
+                  </p>
 
-                  <strong>R{listing.price.toLocaleString()}</strong>
+                  <p>
+                    Bedrooms: <strong>{listing.bedrooms}</strong>
+                  </p>
+
+                  <p>
+                    Bathrooms: <strong>{listing.bathrooms}</strong>
+                  </p>
+
+                  <p>
+                    Guests: <strong>{listing.guests}</strong>
+                  </p>
+
+                  <p>
+                    Description: <strong>{listing.description}</strong>
+                  </p>
+
+                  <p>
+                    Amenities: <strong>{listing.amenities?.join(", ")}</strong>
+                  </p>
+
+                  <p>
+                    Discount: <strong>{listing.weeklyDiscount}%</strong>
+                  </p>
+
+                  <p>
+                    Price: <strong>R{listing.price.toLocaleString()}</strong>
+                  </p>
 
                   <button
                     className="edit-btn"
@@ -765,7 +784,7 @@ export default function Admin() {
 
             <table className="reservations-table">
               <thead>
-                <tr>
+                <tr className="reservations-table-header">
                   <th>Guest</th>
                   <th>Property</th>
                   <th>Check In</th>
@@ -802,6 +821,7 @@ export default function Admin() {
 
                     <td>
                       <select
+                        className="status-badge-select-status"
                         value={reservation.status}
                         onChange={(e) =>
                           updateReservationStatus(
@@ -818,7 +838,7 @@ export default function Admin() {
 
                     <td>
                       <button
-                        className="delete-btn"
+                        className="status-badge-delete-btn"
                         onClick={() => handleDeleteReservation(reservation._id)}
                       >
                         Delete

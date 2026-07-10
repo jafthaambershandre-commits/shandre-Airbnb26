@@ -205,7 +205,7 @@ export default function Home() {
             <ListingCard
               key={listing._id}
               id={listing._id}
-              image={listing.images}
+              image={listing.image}
               title={listing.title}
               location={listing.location}
               price={listing.price}
@@ -226,7 +226,7 @@ export default function Home() {
               <ListingCard
                 key={listing._id}
                 id={listing._id}
-                image={listing.images}
+                image={listing.image}
                 title={listing.title}
                 location={listing.location}
                 price={listing.price}
@@ -238,9 +238,11 @@ export default function Home() {
       )}
 
       <div className="guest-favorites">
-        <h2>⭐ Guest Favorites</h2>
+        <h2>🏆 Guest Favorites</h2>
 
-        <p>Discover the highest-rated stays loved by our guests.</p>
+<p>
+  Discover our highest-rated homes loved by thousands of guests across South Africa.
+</p>
 
         <div className="listings-grid">
           {listings
@@ -250,7 +252,7 @@ export default function Home() {
               <ListingCard
                 key={listing._id}
                 id={listing._id}
-                image={listing.images}
+                image={listing.image}
                 title={listing.title}
                 location={listing.location}
                 price={listing.price}
