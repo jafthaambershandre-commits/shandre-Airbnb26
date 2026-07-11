@@ -622,8 +622,9 @@ body {
 .stay-summary {
   width: 90%;
   margin: 60px auto;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .image-modal {
@@ -1075,7 +1076,7 @@ body {
   padding: 24px;
   border-radius: 18px;
   border: 1px solid #ececec;
-  margin-bottom: 20px;
+  margin: 20px 0;
   transition: 0.3s;
 }
 

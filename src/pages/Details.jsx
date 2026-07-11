@@ -518,7 +518,7 @@ export default function Details() {
           <h2>
             {nights > 0
               ? `${nights} night${nights > 1 ? "s" : ""} in ${listing.location}`
-              : `Choose your dates`}
+              : `🏠 Choose your dates now !`}
           </h2>
         </div>
 
